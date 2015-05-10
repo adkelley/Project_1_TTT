@@ -3,10 +3,9 @@
 * @param {string} piece "X" or "O"
 * @param {string} pathToAvatar png file
 */
-var Player = function(piece, pathToAvatar) {
+var Player = function(pathToAvatar) {
   this.wins = 0;
-  this.piece = piece;  
-  this.avator = pathToAvatar;     
+  this.avatar = pathToAvatar;     
 }
 
 /**
@@ -36,11 +35,11 @@ Player.prototype.incWins = function(inc) {
 }
 
 /**
-* @function getAvatar 
+* @function chooseAvatar 
 * return relative path of Player avatar
+* @todo Implement this
 */
-Player.prototype.getAvatar = function() {
-  return this.avatar;
+Player.prototype.chooseAvatar = function() {
 }
 
 /**
