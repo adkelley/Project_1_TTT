@@ -1,4 +1,6 @@
 const emptySpace = null;
+var game = null;
+
 /**
 * @constructor Game
 * Encapsulates all the logic related to tic-tac-toe
@@ -7,9 +9,11 @@ const emptySpace = null;
 var Game = function(playerAvatar,  opponentAvatar, rows, cols) {
   this.turn = emptySpace;
   this.player = new Player(playerAvatar);
+  this.view = new View();
   this.opponent = new Player(opponentAvatar);
   this.board = new Board(rows, cols);
   this.board.clearBoard(emptySpace);
+  this.ties = 0;
 };
 
 /**
@@ -21,6 +25,7 @@ var Game = function(playerAvatar,  opponentAvatar, rows, cols) {
 Game.prototype.startOver = function(player) {
   this.turn = player;
   this.board.clearBoard(emptySpace);
+  this.view.clearSquares();
 }
 
 /**
@@ -32,7 +37,10 @@ Game.prototype.initialize = function(player) {
   this.player.wins = 0;
   this.opponent.wins = 0;
   this.turn = player;
+  this.ties = 0;
   this.board.clearBoard(emptySpace);
+  this.view.clearScoreBoard();
+  this.view.clearSquares();
 }
 
 /**
@@ -47,13 +55,16 @@ Game.prototype.makeMove = function(index) {
   this.board.setSquare(index, this.turn);
   if (candidate = this.over()) {
     if (candidate === this.turn) {
-//      console.log("We have a winner: " + candidate);
+      this.turn.wins += 1;
+      this.view.updateScoreBoard(this.turn.avatar, this.turn.wins);
     }
     else {
-      console.log("We have tie!" + candidate);
+      this.ties += 1;
+      this.view.updateScoreBoard("tie", this.ties);
     }
   }
   else {
+    this.view.markSquare(index, this.turn.avatar);
     this.turn = (this.turn === this.player) ? this.opponent : this.player;
   }
 }
@@ -122,3 +133,9 @@ Game.prototype.checkLine = function(index, increment) {
     return null;
   }
 }
+
+$(document).ready(function() {
+  game = new Game("X", "O", 3, 3);
+  game.view.initListeners();
+  alert("Press Reset Button to begin playing");
+});
