@@ -1,5 +1,5 @@
 body {
-  font-family: Raleway, "Comic Sans MS", cursive, sans-serif;
+  font-family: Raleway, sans-serif;
   background-color: #004C5D;
   color: #FFFFFF;
 }
@@ -85,7 +85,7 @@ h2 {
 
 #O {
   color: #FF1F40;
-  font-family: Arial;
+  font-family: Raleway;
 }
       
 #Tie {
@@ -97,7 +97,7 @@ h2 {
 
 #X {
     color: #FF823A;
-    font-family: Arial;
+    font-family: Raleway;
 }
 
 ul {
@@ -120,9 +120,10 @@ li {
 #reset {
   margin: 1.5em 7em 0em 7em;
   background: rgb(184, 53, 53);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   color: white;
   width: 8em;
   height: 2em;
   font-size: 1.25em;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: Raleway;
 }
