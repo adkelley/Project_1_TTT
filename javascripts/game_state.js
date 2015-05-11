@@ -148,5 +148,5 @@ Game.prototype.checkLine = function(index, increment) {
 $(document).ready(function() {
   game = new Game("X", "O", 3, 3);
   game.view.initListeners();
-  alert("Press Reset Button to begin playing");
+  game.initialize(game.player);
 });

@@ -1,25 +1,9 @@
 var View = function() {}
-//var $squares = $('.square p');
-  // var squareBorders = document.querySelectorAll('.square');
-//var $squareBorders = $('.square');
-/*
-View.prototype.markSquare = function(id, value) {
-    $("#box"+id).text(value);
-}
-*/
-    
 View.prototype.markSquare = function(id, value) {
     $("#box"+id).html(value);
     $("#box"+id).removeClass().addClass(value);
 }
 
-/*
-View.prototype.markSquare = function(id, value) {
-    $("#box"+id).text(value);
-}
-*/
-
-    
 View.prototype.initListeners = function() {
   var parent = "";
   $('.square p').each(function() {
@@ -32,12 +16,6 @@ View.prototype.initListeners = function() {
     game.initialize(game.player);
   });
 }
-
-/*
-View.prototype.clearSquares = function() {
-  $("[id^=box]").html("&nbsp");
-}
-*/
 
 View.prototype.clearSquares = function() {
  $('.square p').each(function() {

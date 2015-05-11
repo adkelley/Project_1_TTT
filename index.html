@@ -1,19 +1,64 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-<head>
-  <title>Title</title>
-  <meta charset="utf-8" />
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" type="text/css" href="main.css">
-  <!-- Require jQuery -->
-  <script type="text/javascript" src="app.js"></script>
-</head>
-<body>
-  <!-- HTML Body -->
-  <h1>Tic Tac Toe</h1>
-  <img src="http://www.cs.utah.edu/~gk/atwork/img/hevequip2.gif" alt="under construction"></img>
-  <!-- Tic Tac Toe Board here -->
-  <!-- Reset button -->
-</body>
+  <head>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+    <script type="text/javascript" src="./javascripts/player.js"></script>
+    <script type="text/javascript" src="./javascripts/board.js"></script>
+    <script type="text/javascript" src="./javascripts/view.js"></script>
+    <script type="text/javascript" src="./javascripts/game_state.js"></script>
+    <link href="./styles/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <h1 class='title'>Tic-Tac-Toe</h1>
+
+    <div id='board'>
+      <!-- the `&nbsp;` in each div is a non-breakable space.
+           It prevents the div from collapsing. -->
+      <div class='square'>
+        <p id="box0" class='blank'></p>
+      </div>
+      <div class='square'>
+        <p id="box1" class='blank'></p>
+      </div>
+      <div class='square'>
+        <p id="box2" class='blank'></p>
+      </div>
+      <br>
+      <div class='square'>
+        <p id="box3" class='blank'></p>
+      </div>
+      <div class='square'>
+        <p id="box4" class='blank'></p>
+      </div>
+      <div class='square'>
+        <p id="box5" class='blank'></p>
+      </div>
+      <br>
+      <div class='square'>
+        <p id="box6" class='blank'></p>
+      </div>
+      <div class='square'>
+        <p id="box7" class='blank'></p>
+      </div>
+      <div class='square'>
+        <p id="box8" class='blank'></p>
+      </div>
+    </div>
+    <div id="panel">
+      <div id="O">
+        <h2>O</h2>
+      </div>
+      <div id="Tie">
+        <h2>Tie</h2>
+      </div>
+      <div id="X">
+      <h2>X</h2>
+    </div>
+      <ul>
+        <li>0</li>
+        <li>0</li>
+        <li id="xScore">0</li>
+      </ul>
+    <button id="reset" type="button">Reset</button>
+  </body>
 </html>
