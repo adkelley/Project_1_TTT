@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: game_state.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: game_state.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const emptySpace = null;
+var game = null;
+
+/**
+* @constructor Game
+* Encapsulates all the logic related to tic-tac-toe
+* @todo Allow board sizes > 3
+*/
+var Game = function(playerAvatar,  opponentAvatar, rows, cols) {
+  this.turn = emptySpace;
+  this.player = new Player(playerAvatar);
+  this.view = new View();
+  this.opponent = new Player(opponentAvatar);
+  this.board = new Board(rows, cols);
+  this.board.clearBoard(emptySpace);
+  this.ties = 0;
+};
+
+/**
+* @method startOver
+* @param {String} turn
+* Sets up the board &amp; DOM for the next Game
+* players numWins are not reset
+*/
+Game.prototype.startOver = function(player) {
+  this.turn = player;
+  this.board.clearBoard(emptySpace);
+  this.view.clearSquares();
+}
+
+/**
+* @method initialize
+* Called upon player selecting either X or O
+* box. Here player's wins are set to 0;
+*/
+Game.prototype.initialize = function(player) {
+  this.player.wins = 0;
+  this.opponent.wins = 0;
+  this.turn = player;
+  this.ties = 0;
+  this.board.clearBoard(emptySpace);
+  this.view.clearScoreBoard();
+  this.view.clearSquares();
+}
+
+/**
+* @method makeMove()
+* @param index - index on board that player/opponent has selected
+* Update the board with a player's move. Check for draw or win
+* and call the appropriate methods based on result
+*/
+Game.prototype.makeMove = function(index) {
+  var candidate = emptySpace;
+  var that;
+
+  if (this.board.getSquare(index) === emptySpace) {
+    this.board.setSquare(index, this.turn);
+    this.view.markSquare(index, this.turn.avatar);
+    that = this;
+    if (candidate = this.over()) {
+      if (candidate === this.turn) {
+        this.turn.wins += 1;
+        this.view.updateScoreBoard(this.turn.avatar, this.turn.wins);
+        setTimeout(function() {
+          that.startOver((that.turn === that.player) ? that.opponent : that.player);
+          }, 2000);
+      }
+      else {
+        this.ties += 1;
+        this.view.updateScoreBoard("tie", this.ties);
+        setTimeout(function() {
+          that.startOver((that.turn === that.player) ? that.opponent : that.player);
+          }, 2000);
+      }
+    }
+    else {
+      this.view.markSquare(index, this.turn.avatar);
+      this.turn = (this.turn === this.player) ? this.opponent : this.player;
+    }
+  }
+}
+  
+/**
+* @method over
+* Determine if there's a winner or draw and
+* return that information back to caller
+*/
+Game.prototype.over = function() {
+  return this.winner() || this.draw();
+}
+
+Game.prototype.draw = function() {
+  return this.board.numOccupied >= this.board.numSquares;
+}
+
+Game.prototype.winner = function() {
+  return this.winningRow() || this.winningCol() ||
+    this.winningDiag() || this.winningReverseDiag();
+}
+
+Game.prototype.winningRow = function() {
+  var candidate = null, index = 0, numChecks = 0;
+  while (!candidate &amp;&amp; numChecks &lt; this.board.width) {
+    candidate = this.checkLine(index, 1);
+    index += 3;
+    numChecks += 1;
+  };
+  return candidate;
+}
+
+Game.prototype.winningCol = function() {
+  var winner = false, index = 0, numChecks = 0;
+  while (!winner &amp;&amp; numChecks &lt; this.board.width) {
+    candidate = this.checkLine(index, 3);
+    index += 1;
+    numChecks += 1;
+    winner = (candidate === this.player ||
+              candidate === this.opponent);
+  };
+  return candidate;
+}
+
+Game.prototype.winningDiag = function() {
+  return this.checkLine(0, 4);
+}
+
+Game.prototype.winningReverseDiag = function() {
+  return this.checkLine(2, 2);
+}
+
+Game.prototype.checkLine = function(index, increment) {
+  var comparator = this.board.getSquare(index);
+  if (comparator != emptySpace) {
+    var nextIndex = index + increment;
+    var candidate = true;
+    var numChecks = 1;
+    while (candidate &amp;&amp; numChecks &lt; this.board.width) {
+      candidate = (this.board.getSquare(nextIndex) === comparator);
+      nextIndex += increment;
+      numChecks += 1
+    }
+    return (candidate) ? comparator : null;
+  } else {
+    return null;
+  }
+}
+
+$(document).ready(function() {
+  game = new Game("X", "O", 3, 3);
+  game.view.initListeners();
+  game.initialize(game.player);
+});
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Board.html">Board</a></li><li><a href="Game%250AEncapsulates%2520all%2520the%2520logic%2520related%2520to%2520tic-tac-toe.html">Game
+Encapsulates all the logic related to tic-tac-toe</a></li><li><a href="Player.html">Player</a></li></ul><h3>Global</h3><ul><li><a href="global.html#allocBoard">allocBoard</a></li><li><a href="global.html#BoardSizeException">BoardSizeException</a></li><li><a href="global.html#chooseAvatarreturnrelativepathofPlayeravatar">chooseAvatar 
+return relative path of Player avatar</a></li><li><a href="global.html#clearBoard">clearBoard</a></li><li><a href="global.html#getSquare">getSquare</a></li><li><a href="global.html#getWinsReturnsplayer#wins">getWins 
+Returns player # wins</a></li><li><a href="global.html#incWins">incWins</a></li><li><a href="global.html#initializeCalleduponplayerselectingeitherXorObox.Hereplayer'swinsaresetto0;">initialize
+Called upon player selecting either X or O
+box. Here player's wins are set to 0;</a></li><li><a href="global.html#makeMove()">makeMove()</a></li><li><a href="global.html#overDetermineifthere'sawinnerordrawandreturnthatinformationbacktocaller">over
+Determine if there's a winner or draw and
+return that information back to caller</a></li><li><a href="global.html#setAvatar">setAvatar</a></li><li><a href="global.html#setSquare">setSquare</a></li><li><a href="global.html#setWinsinitializesplayerwinsto'wins'thiscanbeusedtoinitializewinsto0orresumewith#winsafterbrowserreferesh">setWins initializes player wins to 'wins'
+ this can be used to initialize wins to 0 or resume
+ with #wins after browser referesh</a></li><li><a href="global.html#startOver">startOver</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0</a> on Sun May 10 2015 22:03:14 GMT-0700 (PDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
