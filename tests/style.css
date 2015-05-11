@@ -3,51 +3,76 @@ body {
 }
 
 #board {
-  width: 31em;
-  height: 30em;
+  width: 32em;
+  height: 32em;
   position: relative;
-  top: 10%;
-  left: 20%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.box {
-    width: 10em;
-    height: 10em;
-    border: 1px solid black;
-    display: inline-block;
-    margin-bottom: 4px;
-    text-align: center;
-    line-height: 10em;
-    background: black;
-    color: white;
+.title {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
 }
 
-#header {
-    position: relative;
-    width: 30.8em;
-    text-align: center;
-    background: black;
-    color: white;
-    height: 4.5em;
-    top: 8%;
-    line-height: 1em;
+.square {
+  display: inline-block;
+  border: 3px solid black;
+  width: 10em;
+  height: 10em;
+  margin-bottom: 1px;
+}
+
+/* display: table-cell is required in order to use vertical-align
+ This allows for an X or O perfectly centered in the p element */
+.blank {
+  display: table-cell;
+  /* inherit setting from parent element's class */
+  width: inherit;
+  height: inherit;
+  font-size: 16px;
+  text-align: center;
+  vertical-align: middle;
+  /*background-color: #D8D8D8;*/
+}
+
+.X {
+  display: table-cell;
+  width: inherit;
+  height: inherit;
+  font-family: Arial;
+  font-size: 100px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #81F7F3;
+}
+
+.O {
+  display: table-cell;
+  width: inherit;
+  height: inherit;
+  font-family: Arial;
+  font-size: 100px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #81F781;
 }
 
 #panel {
-    width: 30.8em;
-    height: 5em;
-    position: relative;
-    top: 5.78em;
-    left: 20%;
-    border: 1px solid black;
-    background: black;
-    color: white;
+  border: 3px solid black;
+  width: 32em;
+  height: 5em;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-#O, #tie, #X {
+h2 {
  float: left;
- padding: 0em 1.6em 0em 1.6em;
- line-height: 0.8em;
+ padding: 0em 3.4em 0em 2.2em;
+ line-height: 0.5em;
 }
 
 #tie {
@@ -69,7 +94,7 @@ li {
 }
 
 #reset {
-  margin: 1.5em 7em;
+  margin: 1.5em 7em 0em 9em;
   background: rgb(184, 53, 53);
   color: white;
   width: 8em;

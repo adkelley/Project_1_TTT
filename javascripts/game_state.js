@@ -51,26 +51,37 @@ Game.prototype.initialize = function(player) {
 */
 Game.prototype.makeMove = function(index) {
   var candidate = emptySpace;
+  var that;
 
-  this.board.setSquare(index, this.turn);
-  if (candidate = this.over()) {
-    if (candidate === this.turn) {
-      this.turn.wins += 1;
-      this.view.updateScoreBoard(this.turn.avatar, this.turn.wins);
+  if (this.board.getSquare(index) === emptySpace) {
+    this.board.setSquare(index, this.turn);
+    this.view.markSquare(index, this.turn.avatar);
+    that = this;
+    if (candidate = this.over()) {
+      if (candidate === this.turn) {
+        this.turn.wins += 1;
+        this.view.updateScoreBoard(this.turn.avatar, this.turn.wins);
+        setTimeout(function() {
+          that.startOver((that.turn === that.player) ? that.opponent : that.player);
+          }, 2000);
+      }
+      else {
+        this.ties += 1;
+        this.view.updateScoreBoard("tie", this.ties);
+        setTimeout(function() {
+          that.startOver((that.turn === that.player) ? that.opponent : that.player);
+          }, 2000);
+      }
     }
     else {
-      this.ties += 1;
-      this.view.updateScoreBoard("tie", this.ties);
+      this.view.markSquare(index, this.turn.avatar);
+      this.turn = (this.turn === this.player) ? this.opponent : this.player;
     }
-  }
-  else {
-    this.view.markSquare(index, this.turn.avatar);
-    this.turn = (this.turn === this.player) ? this.opponent : this.player;
   }
 }
   
 /**
-* @method isGameOver
+* @method over
 * Determine if there's a winner or draw and
 * return that information back to caller
 */

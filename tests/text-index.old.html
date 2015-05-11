@@ -9,40 +9,21 @@
     <link href="style.css" rel="stylesheet">
   </head>
   <body>
-    <h1 class='title'>Tic-Tac-Toe</h1>
-
     <div id='board'>
       <!-- the `&nbsp;` in each div is a non-breakable space.
            It prevents the div from collapsing. -->
-      <div class='square'>
-        <p id="box0" class='blank'></p>
+      <div id="header" class="box">
+        <h1>Tic-Tac-Toe</h1>
       </div>
-      <div class='square'>
-        <p id="box1" class='blank'></p>
-      </div>
-      <div class='square'>
-        <p id="box2" class='blank'></p>
-      </div>
-      <br>
-      <div class='square'>
-        <p id="box3" class='blank'></p>
-      </div>
-      <div class='square'>
-        <p id="box4" class='blank'></p>
-      </div>
-      <div class='square'>
-        <p id="box5" class='blank'></p>
-      </div>
-      <br>
-      <div class='square'>
-        <p id="box6" class='blank'></p>
-      </div>
-      <div class='square'>
-        <p id="box7" class='blank'></p>
-      </div>
-      <div class='square'>
-        <p id="box8" class='blank'></p>
-      </div>
+      <div id="box0" class='box'><p>&nbsp;</p></div>
+      <div id="box1" class='box'><p>&nbsp;</p></div>
+      <div id="box2" class='box'><p>&nbsp;</p></div>
+      <div id="box3" class='box'><p>&nbsp;</P></div>
+      <div id="box4" class='box'><p>&nbsp;</p></div>
+      <div id="box5" class='box'><p>&nbsp;</p></div>
+      <div id="box6" class='box'><p>&nbsp;</p></div>
+      <div id="box7" class='box'><p>&nbsp;</p></div>
+      <div id="box8" class='box'><p>&nbsp;</p></div>
     </div>
     <div id="panel">
       <div id="O">
@@ -54,6 +35,7 @@
       <div id="X">
       <h2>X</h2>
     </div>
+    <div style="clear:both;" id="results">
       <ul>
         <li>0</li>
         <li>0</li>

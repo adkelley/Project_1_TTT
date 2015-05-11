@@ -1,12 +1,30 @@
 var View = function() {}
-
+//var $squares = $('.square p');
+  // var squareBorders = document.querySelectorAll('.square');
+//var $squareBorders = $('.square');
+/*
 View.prototype.markSquare = function(id, value) {
     $("#box"+id).text(value);
 }
+*/
+    
+View.prototype.markSquare = function(id, value) {
+    $("#box"+id).html(value);
+    $("#box"+id).removeClass().addClass(value);
+}
+
+/*
+View.prototype.markSquare = function(id, value) {
+    $("#box"+id).text(value);
+}
+*/
+
     
 View.prototype.initListeners = function() {
-  $(".box").each(function() {
+  var parent = "";
+  $('.square p').each(function() {
     $(this).click(function(event) {
+      //console.log(event.target.id);
       game.makeMove(parseInt(event.target.id.match(/[0-8]/), 10));
     })});
   
@@ -15,8 +33,22 @@ View.prototype.initListeners = function() {
   });
 }
 
+/*
 View.prototype.clearSquares = function() {
   $("[id^=box]").html("&nbsp");
+}
+*/
+
+View.prototype.clearSquares = function() {
+ $('.square p').each(function() {
+    // or: $squares.each(function($el) {
+      $(this).html('');
+      // or:
+      $(this).removeClass().addClass('blank');
+    });
+    $('.square').each(function() {
+      $(this).removeClass().addClass('square');
+    });
 }
 
 View.prototype.clearScoreBoard = function() {

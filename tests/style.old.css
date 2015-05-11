@@ -1,0 +1,88 @@
+body {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+#board {
+  width: 31em;
+  height: 30em;
+  position: relative;
+  top: 10%;
+  left: 20%;
+}
+
+.box {
+    width: 5em;
+    height: 5em;
+    border: 1px solid black;
+    display: inline-block;
+    margin-bottom: 4px;
+    text-align: center;
+    line-height: 10em;
+    background: black;
+    overflow: hidden;
+    color: white;
+}
+
+p {
+    font-size: 2em;
+}
+
+#header {
+    position: relative;
+    width: 30.8em;
+    text-align: center;
+    background: black;
+    color: white;
+    height: 4.5em;
+    top: 8%;
+    line-height: 1em;
+}
+
+#panel {
+    width: 30.8em;
+    height: 5em;
+    position: relative;
+    top: 5.78em;
+    left: 20%;
+    border: 1px solid black;
+    background: black;
+    color: white;
+}
+
+/*#O, #tie, #X { */
+h2 {
+ float: left;
+ padding: 0em 3.8em 0em 2em;
+ line-height: 0.8em;
+}
+
+#tie {
+    padding-right: 5.5em;
+    padding-left: 3em;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+    line-height: 8px;
+}
+
+li {
+  display: inline;
+  padding: 0 3.8em 0em 2.22em;
+  font-size: 1.5em;
+}
+
+#reset {
+  background: rgb(184, 53, 53);
+  color: white;
+  width: 8em;
+  height: 2em;
+  font-size: 1.25em;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+button {
+    margin: 1.5em 7em 0em 9em;
+}
